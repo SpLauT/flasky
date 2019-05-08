@@ -1,25 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
-from datetime import datetime
+from routes import initialize_routes
+from config.environment.development import DevelopConfiguration
+
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+_my_config = DevelopConfiguration()
+app.config['SECRET_KEY'] = _my_config.get_form_secret()
 
-@app.route('/')
-def index():
-    return render_template('index.html', current_time=datetime.utcnow())
-@app.route('/user', defaults={'name': None})
-@app.route('/user/<string:name>')
-def user(name):
-    return render_template('user.html', name=name)
- 
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
+#Initializes the routes
+initialize_routes(app)
 
