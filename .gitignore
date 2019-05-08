@@ -1,5 +1,5 @@
 #the pycache
-__pycache__/**
+__pycache__/
 
 #.vs code elements
 .vscode/**
