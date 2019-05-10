@@ -7,3 +7,6 @@ __pycache__/
 
 #my virtual environment
 venv/**
+
+#environment variables
+email.env
