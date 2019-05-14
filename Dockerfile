@@ -7,7 +7,7 @@ COPY * /app/
 WORKDIR /app
 
 RUN pip install -r requirements.txt
-ENV FLASK_APP=hello.py
+ENV FLASK_APP=flasky.py
 
 ENTRYPOINT [ "flask" ]
 
